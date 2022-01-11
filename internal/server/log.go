@@ -26,7 +26,7 @@ func (c *Log) Read(offset uint64) (Record, error) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	if offset >= uint64(len(c.records)) {
-		return Record{}, ErrOffsetNotfound
+		return Record{}, ErrOffsetNotFound
 	}
 	return c.records[offset], nil
 }
@@ -36,4 +36,4 @@ type Record struct {
 	Offset uint64 `json: "offset"`
 }
 
-var ErrOffsetNotfound = fmt.Errorf("Offset not found")
+var ErrOffsetNotFound = fmt.Errorf("offset not found")
